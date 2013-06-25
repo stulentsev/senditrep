@@ -1,0 +1,46 @@
+<%= form_tag '/', :method => 'post',:id => 'quotes-search' do %>
+  <div class = 'formpart'>
+  <div class="field">
+    <%= label_tag :from, 'Место отправления*'%><br/>
+    <%= text_field_tag :from, params[:from], :class => 'autocomplete' %><br/>
+  </div>
+  <div class="field">
+    <%= label_tag :to, 'Место доставки*'%><br/>
+    <%= text_field_tag :to, params[:to],:class => 'autocomplete' %><br/>
+  </div>
+  </div>
+  <div class = 'formpart'>
+  <div class="field">
+    <%= label_tag :weight, 'Вес, кг'%><br/>
+    <%= text_field_tag :weight, params[:weight] %><br/>
+  </div>
+  <div class="field">
+    <%= label_tag :price, 'Стоимость груза, руб'%><br/>
+    <%= text_field_tag :price, params[:price] %><br/>
+  </div>
+</div>
+<div class = 'formpart'>
+  <div class='formcheckbox'>
+   <%= check_box_tag :isdocument, params[:isdocument]%> <%= label_tag :"Письмо" %> 
+  </div>
+  <div class="sizes">
+    <%= label_tag :'Габариты, см' %><br />
+    <%= text_field_tag :width, params[:width] %> x
+    <%= label_tag :" " %>
+    <%= text_field_tag :height, params[:height] %> x
+    <%= label_tag :" " %>
+    <%= text_field_tag :length, params[:length] %>
+  </div>
+</div>  
+<div class = 'formpart'>
+  <div class="actions">
+    <%= image_submit_tag "/assets/find.png"%>
+  </div>
+</div>
+<% end %>
+
+<script>
+  
+  </script>
+</head>
+<body>
