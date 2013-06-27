@@ -1,4 +1,5 @@
 <H2> SendIt </H2>
+<h3> <%= @someVar %>
 
 <div class = 'deliveryform'>
 	<p> Search Form </p>
@@ -6,14 +7,5 @@
 </div>
 
 <div class = 'result'>
-	<% if !(params[:from].nil?||params[:to].nil?) %>
-		<table class = 'resultTable'>
-		<% @providersQuote.each do |providerQuote| %>
-			<tr>
-				<td><%= providerQuote.quotes.price %></td>
-				<td><%= providerQuote.quotes.time %></td>
-			</tr>
-		<% end %>
-		</table
-	<% end %>
+	<%= render 'result' %>
 </div>

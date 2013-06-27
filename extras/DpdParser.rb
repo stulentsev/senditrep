@@ -1,8 +1,9 @@
 class DpdParser
-	def self.quotes
+	def self.quotes(params)
 		quote = Quote.new()
-		quote.price = 'Dpd!'
-		quote.time = 10
+		quote.companyName = 'DPD'
+		quote.price = 200
+		quote.time = '3-5 дней'
 		quote
 	end
 end

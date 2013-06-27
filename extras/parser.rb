@@ -3,12 +3,12 @@ class DeliveryParser
   	@parser = parser
   end
 
-  def quotes
-  	@parser.quotes
+  def quotes(params)
+  	@parser.quotes(params)
   end
 end
 
 class Quote
-	attr_accessor :price, :time
+	attr_accessor :price, :time, :companyName
 end
 
