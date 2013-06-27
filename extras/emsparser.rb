@@ -26,8 +26,8 @@ class EmsParser
 		apiQuery = {:query => 
 			{:method => 'ems.calculate',
 				:from => Emslocation.locationCode(params[:from]),
-				:to =>Emslocation.locationCode(params[:to]),
-				:weight=>'1.5'}}
+				:to => Emslocation.locationCode(params[:to]),
+				:weight=>params[:weight]}}
 		resp = get(apiSite,apiQuery).parsed_response
 		#Rails.logger.info 'TrackMessage:'
 		#Rails.logger.info resp.inspect

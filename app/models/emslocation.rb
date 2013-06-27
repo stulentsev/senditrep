@@ -1,12 +1,16 @@
+# encoding: utf-8
 class Emslocation < ActiveRecord::Base
   attr_accessible :locationtype, :name, :value
 
   #Return code of city/region by its name
   def self.locationCode(name)
-  	if name == 'Москва'
-		return 'city--moskva'
-	else
-		return 'region--omskaja-oblast'
-	end
+  	code = Emslocation.where('name = ?', name.mb_chars.upcase).first
+  	Rails.logger.info "InfoMessage:"
+  	Rails.logger.info code
+  	if code.nil?
+  		return 'Nothing'
+  	end
+  	code.value
   end
+
 end
