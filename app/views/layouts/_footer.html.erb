@@ -1,0 +1,6 @@
+<div class = 'footer window'>
+	<span><a href = '/'> Главная </a></span>
+	<% @pages.each do |page| %>
+		<span><%= link_to page.linkname, page_path(page) %></span>
+	<% end %>
+</div>

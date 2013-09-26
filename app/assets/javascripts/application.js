@@ -15,4 +15,4 @@
 //= require_tree .
 //= require jquery.ui.autocomplete
 //= require jquery.ui.slider
-
+//= require jquery.formalize

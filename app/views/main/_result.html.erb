@@ -1,16 +1,16 @@
-<% if !(params[:from].nil?||params[:to].nil?) %>
 	<table class = 'resultTable'>
 		<tr>
-			<td>Компания</td>
-			<td>Цена</td>
-			<td>Срок доставки</td>
+			<th>Компания</th>
+			<th>Тип доставки</th>
+			<th>Цена, рублей</th>
+			<th>Срок доставки</th>
 		</tr>
 	<% @providersQuote.each do |providerQuote| %>
 		<tr>
 			<td><%= providerQuote.companyName %></td>
+			<td>Экспресс </td>
 			<td><%= providerQuote.price %></td>
 			<td><%= providerQuote.time %></td>
 		</tr>
 	<% end %>
 	</table>
-<% end %>

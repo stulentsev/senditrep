@@ -12,4 +12,102 @@
  *= require_tree .
  *= require jquery.ui.autocomplete
  *= require jquery.ui.slider
+ *= require formalize
  */
+*{
+	font-family: "Trebuchet MS";
+}
+
+a{
+	color:#008dcd;
+}
+body, html{
+	margin:0;
+	padding:0;
+}
+body{
+	background-color:#ccc;
+}
+/*General  stuff*/
+.mainwrap{
+	width:960px;
+	margin:0 auto;
+}
+.window{
+	padding:20px 0;
+	margin:20px 0;
+	background-color:#fff;
+}
+.window-vpadding{
+	padding-left:20px;
+	padding-right:20px;
+}
+/*headpart*/
+.headpart{
+	background-color:#fff;
+	margin-top:0;
+	min-width:0;
+	display:inline-block;
+}
+.logo{
+	font-size:150%;
+	display:inline-block;
+	width:250px;
+	text-align:center;
+}
+/*Input form stuff*/
+.deliveryform{
+	overflow:hidden;
+}
+.formpart{
+	width:220px;
+	float:left;
+	padding:0 10px;
+}
+.sizes input{
+	width:50px;
+	display:inline;
+}
+.sizes label{
+	display:inline;
+}
+.formcheckbox{
+	padding-top:17px;
+	padding-bottom:8px;
+}
+
+
+/*result table staff*/
+.result{
+	background-color:#fff;
+	padding: 20px 0;
+}
+.resultTable{
+	 border-collapse: collapse;
+	 margin:0 10px;
+}
+.resultTable td{
+	border-bottom: 1px solid #afafaf;	
+	margin: 0px;
+}
+.resultTable th{
+	background-color:#aacdff;
+}
+.resultTable th, .resultTable td{
+	text-align:left;
+	width:240px;
+}
+.resultTable th:last-child, .resultTable td:last-child{
+	width:220px;
+}
+
+
+/*footer*/
+.footer span{
+	display:inline-block;
+	width:120px;
+}
+.footer span:first-child{
+	margin-left:10px;
+	width:110px;
+}

@@ -1,8 +1,5 @@
 class MainController < ApplicationController
-
 	def index
-		
-		@someVar = "Hello"
 		#Достаём все возможные варианты доставки из БД
 		@deliveries = Delivery.all
 		@providersQuote = []

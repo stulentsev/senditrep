@@ -1,4 +1,7 @@
 Send::Application.routes.draw do
+  resources :pages
+
+
   resources :deliveries
 
   root :to => "main#index"

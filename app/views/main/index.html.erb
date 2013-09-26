@@ -1,11 +1,9 @@
-<H2> SendIt </H2>
-<h3> <%= @someVar %>
-
-<div class = 'deliveryform'>
-	<p> Search Form </p>
+<div class = 'deliveryform window'>
 	<%= render 'form' %>
 </div>
 
-<div class = 'result'>
-	<%= render 'result' %>
-</div>
+<% if !(params[:from].nil?||params[:to].nil?) %>
+	<div class = 'result window'>
+		<%= render 'result' %>
+	</div>
+<%end%>
