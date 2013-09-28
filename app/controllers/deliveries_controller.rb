@@ -1,5 +1,5 @@
 class DeliveriesController < ApplicationController
- 
+  http_basic_authenticate_with name: "dhh", password: "secret"
   # GET /deliveries
   # GET /deliveries.json
   def index

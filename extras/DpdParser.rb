@@ -3,7 +3,7 @@ class DpdParser
 		quote = Quote.new()
 		quote.companyName = 'DPD'
 		quote.price = 200
-		quote.time = '3-5'
+		quote.time = nil
 		quote
 	end
 end

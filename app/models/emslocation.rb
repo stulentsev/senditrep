@@ -1,6 +1,5 @@
 # encoding: utf-8
 class Emslocation < ActiveRecord::Base
-  attr_accessible :locationtype, :name, :value
 
   #Return code of city/region by its name
   def self.locationCode(name)

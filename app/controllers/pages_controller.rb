@@ -1,4 +1,5 @@
 class PagesController < ApplicationController
+  http_basic_authenticate_with name: "dhh", password: "secret", except: [:index]
   # GET /pages
   # GET /pages.json
   def index
