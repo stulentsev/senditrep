@@ -1,10 +1,7 @@
 <div class = 'deliveryform window'>
 	<%= render 'form' %>
-	<div id = "notification"><br/>Заполните поля</div>
+	<div id = "notification"></div>
 </div>
-
-<% if !(params[:from].nil?||params[:to].nil?) %>
-	<div class = 'result window'>
-		<%= render 'result' %>
-	</div>
-<%end%>
+<div id = "result_placeholder">
+	
+</div>

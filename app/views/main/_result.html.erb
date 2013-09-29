@@ -1,18 +1,27 @@
-	<table class = 'resultTable'>
-		<tr>
-			<th>Компания</th>
-			<th>Тип доставки</th>
-			<th>Цена, рублей</th>
-			<th>Срок доставки, дней</th>
-		</tr>
-	<% @providersQuote.each do |providerQuote| %>
-		<% if !providerQuote.price.nil? %>
-		<tr>
-			<td><%= link_to providerQuote.companyName,"http://google.com" %></td>
-			<td><%= providerQuote.typeName%> </td>
-			<td><%= providerQuote.price %></td>
-			<td><%= providerQuote.time %></td>
-		</tr>
-		<%end%>
-	<% end %>
-	</table>
+<% if !(params[:from].blank?||params[:to].blank?||params[:weight].blank?) %>
+	<div class = 'result window'>
+		<table class = 'resultTable'>
+			<tr>
+				<th>Компания</th>
+				<th>Тип доставки</th>
+				<th>Цена, рублей</th>
+				<th>Срок доставки, дней</th>
+			</tr>
+		<% @providersQuote.each do |providerQuote| %>
+			<% if !providerQuote.price.nil? %>
+			<tr>
+				<td><%= link_to providerQuote.companyName, 
+										providerQuote.companyLink%></td>
+				<td><%= providerQuote.typeName%> </td>
+				<td><%= providerQuote.price %></td>
+				<td><%= providerQuote.time %></td>
+			</tr>
+			<%end%>
+		<% end %>
+		</table>
+	</div>
+<%else%>
+<div class = 'result window'>
+	hello
+	</div>
+<%end%>

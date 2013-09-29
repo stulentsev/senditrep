@@ -3,6 +3,8 @@ Send::Application.routes.draw do
   resources :deliveries
   root :to => "main#index"
   post "/", to: "main#index"
+  post 'main/result', to: "main#result"
+  get 'main/result', to: "main#result"
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

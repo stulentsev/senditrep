@@ -1,11 +1,11 @@
-<%= form_tag '/', :method => 'post',:id => 'quotes-search' do %>
+<%= form_tag '/', :remote=>'true',:method => 'post',:id => 'quotes-search' do %>
   <div class = 'formpart'>
   <div class="field">
-    <%= label_tag :from, 'Место отправления*'%><br/>
+    <%= label_tag :from, 'Город отправления*'%><br/>
     <%= text_field_tag :from, params[:from], :class => 'autocomplete' %><br/>
   </div>
   <div class="field">
-    <%= label_tag :to, 'Место доставки*'%><br/>
+    <%= label_tag :to, 'Город доставки*'%><br/>
     <%= text_field_tag :to, params[:to],:class => 'autocomplete' %><br/>
   </div>
   </div>
