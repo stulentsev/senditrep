@@ -3,7 +3,7 @@ class EmsParser
 	format :json
 	  
 	#return data as instance of Quote class
-	def self.quotes(params)		
+	def self.quotes(params,extra)		
 		quote = Quote.new()
 		quote.companyName = 'EMS'
 		quote.price, quote.time =EmsParser.definePriceAndTime(params)
@@ -29,8 +29,6 @@ class EmsParser
 				:to => Emslocation.locationCode(params[:to]),
 				:weight=>params[:weight]}}
 		resp = get(apiSite,apiQuery).parsed_response
-		#Rails.logger.info 'TrackMessage:'
-		#Rails.logger.info resp.inspect
 		resp
 	end
 end

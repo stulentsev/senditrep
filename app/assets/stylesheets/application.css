@@ -74,6 +74,11 @@ body{
 	padding-top:17px;
 	padding-bottom:8px;
 }
+#notification{
+	color:red;
+	clear:both;
+	padding:0px 10px;
+}
 
 
 /*result table staff*/

@@ -40,7 +40,7 @@ class DeliveriesController < ApplicationController
   # POST /deliveries
   # POST /deliveries.json
   def create
-    @delivery = Delivery.new(params[:delivery])
+    @delivery = Delivery.new(delivery_params)
 
     respond_to do |format|
       if @delivery.save
@@ -59,7 +59,7 @@ class DeliveriesController < ApplicationController
     @delivery = Delivery.find(params[:id])
 
     respond_to do |format|
-      if @delivery.update_attributes(params[:delivery])
+      if @delivery.update_attributes(delivery_params)
         format.html { redirect_to @delivery, :notice => 'Delivery was successfully updated.' }
         format.json { head :no_content }
       else
@@ -80,4 +80,10 @@ class DeliveriesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  private
+
+    def delivery_params
+      params.require(:delivery).permit(:name, :website, :extra1, :extra2, :extra3)
+    end
 end

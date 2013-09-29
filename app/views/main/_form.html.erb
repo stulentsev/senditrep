@@ -21,7 +21,7 @@
 </div>
 <div class = 'formpart'>
   <div class='formcheckbox'>
-   <%= check_box_tag :isdocument, params[:isdocument]%> <%= label_tag :"Письмо" %> 
+   <%= check_box_tag :isdocument,"on",!params[:isdocument].nil?%> <%= label_tag :"Письмо" %> 
   </div>
   <div class="sizes">
     <%= label_tag :'Габариты, см' %><br />
