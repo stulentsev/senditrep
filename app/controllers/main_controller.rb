@@ -12,10 +12,6 @@ class MainController < ApplicationController
 		end
     end
 
-    def result
-    	render :layout => false
-    end
-
     private
 
     	def collectQuotes(params)

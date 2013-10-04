@@ -7,9 +7,6 @@ class PonyParser
 		quote
 	end
 
-
-
-
 	private
 	#wsdl requests to pony API
 	#extra[0] код типа доставки цифрой (i.e.delivery_mode)
@@ -32,7 +29,6 @@ class PonyParser
 		direction = params[:from]==params[:to]?3:2 
 		
 		operation = client.operation(service_name, port_name, operation_name)
-		operation.header = {}
 		operation.body = {:getRateRequest=>{:org_city=>params[:from],
 											:dest_city=>params[:to],
 											:item_count=>1,

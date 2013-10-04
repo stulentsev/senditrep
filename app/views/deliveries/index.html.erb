@@ -1,10 +1,13 @@
 <h1>SendIt Main page</h1>
-
+<div class = 'window'>
 <%= @someVar %>
 <table>
   <tr>
     <th>Name</th>
     <th>Website</th>
+    <th></th>
+    <th></th>
+    <th></th>
     <th></th>
     <th></th>
     <th></th>
@@ -14,6 +17,9 @@
   <tr>
     <td><%= delivery.name %></td>
     <td><%= delivery.website %></td>
+    <td><%= delivery.extra1 %></td>
+    <td><%= delivery.extra2 %></td>
+    <td><%= delivery.extra3 %></td>
     <td><%= link_to 'Show', delivery %></td>
     <td><%= link_to 'Edit', edit_delivery_path(delivery) %></td>
     <td><%= link_to 'Destroy', delivery, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
@@ -24,3 +30,4 @@
 <br />
 
 <%= link_to 'New Delivery', new_delivery_path %>
+</div>

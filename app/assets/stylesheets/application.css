@@ -20,13 +20,14 @@
 a{
 	color:#008dcd;
 }
-body, html{
+body{
 	margin:0;
 	padding:0;
+	width:100%;
+	background-image: url("/assets/back.jpg");
+	background-size: cover;
 }
-body{
-	background-color:#ccc;
-}
+
 /*General  stuff*/
 .mainwrap{
 	width:960px;
