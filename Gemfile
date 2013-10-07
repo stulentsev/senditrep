@@ -12,6 +12,7 @@ gem 'httparty'
 # for soap APIs
 gem 'savon', git: 'http://github.com/savonrb/savon'
 gem 'nokogiri'
+gem 'capistrano'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -26,6 +27,8 @@ end
 
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
+
+gem 'mysql2'
 #gem 'formalize-rails'
 
 # To use ActiveModel has_secure_password
