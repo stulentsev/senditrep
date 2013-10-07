@@ -10,7 +10,7 @@ gem 'sqlite3'
 gem 'json'
 gem 'httparty'
 # for soap APIs
-gem 'savon', git: 'http://github.com/savonrb/savon'
+gem 'savon', :git => 'git://github.com/savonrb/savon.git'
 gem 'nokogiri'
 gem 'capistrano'
 # Gems used only for assets and not required

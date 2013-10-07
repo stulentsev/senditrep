@@ -1,5 +1,5 @@
 GIT
-  remote: http://github.com/savonrb/savon
+  remote: git://github.com/savonrb/savon.git
   revision: 91ff564787a368687a040bf9bb052a55cd9c88ff
   specs:
     savon (3.0.0)
