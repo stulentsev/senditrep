@@ -17,6 +17,18 @@ namespace :import do
     end
   end
 
-
+  desc "Import CDEK locations' ID from csv to db"
+  task :cdek => :environment do
+    result = 0
+    File.open('./lib/tasks/city_cdek.csv').each_line do |line|
+        city = line.gsub("\n","").split(',')
+        puts city[1]
+        p = CdekLocation.create!({
+          :num => city[0],
+          :cityname => city[1].mb_chars.downcase
+          })
+    end
+      
+  end
   
 end

@@ -11,7 +11,7 @@ gem 'json'
 gem 'httparty'
 # for soap APIs
 gem 'savon', git: 'http://github.com/savonrb/savon'
-
+gem 'nokogiri'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do

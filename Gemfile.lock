@@ -129,6 +129,7 @@ DEPENDENCIES
   jquery-rails
   jquery-ui-rails
   json
+  nokogiri
   rails (= 4.0.0)
   sass-rails
   savon!
