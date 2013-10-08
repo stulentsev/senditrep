@@ -28,7 +28,11 @@ end
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 
-gem 'mysql2'
+gem 'pg'
+#for db change, may delete
+gem 'yaml_db', github: 'jetthoughts/yaml_db'
+#heroku staff
+gem 'rails_12factor', group: :production
 #gem 'formalize-rails'
 
 # To use ActiveModel has_secure_password

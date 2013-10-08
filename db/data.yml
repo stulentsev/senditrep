@@ -1,0 +1,13 @@
+
+---
+deliveries:
+  columns:
+  - id
+  - name
+  - website
+  - created_at
+  - updated_at
+  - extra1
+  - extra2
+  - extra3
+  records: 

@@ -23,8 +23,8 @@ ActiveRecord::Schema.define(version: 20131007133252) do
   create_table "deliveries", force: true do |t|
     t.string   "name"
     t.string   "website"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "extra1"
     t.string   "extra2"
     t.string   "extra3"
@@ -34,15 +34,15 @@ ActiveRecord::Schema.define(version: 20131007133252) do
     t.string   "locationtype"
     t.string   "name"
     t.string   "value"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "pages", force: true do |t|
     t.string   "title"
     t.text     "content"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "linkname"
   end
 
