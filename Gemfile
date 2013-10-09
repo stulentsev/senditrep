@@ -27,7 +27,6 @@ end
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 
-gem 'postgres'
 gem 'pg'
 
 # To use ActiveModel has_secure_password
