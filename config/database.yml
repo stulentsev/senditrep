@@ -13,8 +13,8 @@ test:
   username: fruityfree
   password: unilever
 production:
-  adapter: postgresql
+  adapter: mysql2
   host: localhost
-  database: send_production
+  database: send
   username: fruityfree
   password: unilever
