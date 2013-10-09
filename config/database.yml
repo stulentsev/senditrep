@@ -14,8 +14,7 @@ test:
   password: unilever
 production:
   adapter: postgresql
-  encoding: unicode
+  host: localhost
   database: send_production
-  pool: 5
   username: fruityfree
   password: unilever

@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+ruby '2.0.0'
 gem 'rails', '4.0.0'
 
 # Bundle edge Rails instead:
@@ -10,7 +11,7 @@ gem 'httparty'
 # for soap APIs
 gem 'savon', :git => 'git://github.com/savonrb/savon.git'
 gem 'nokogiri'
-gem 'capistrano'
+gem 'capistrano', '~> 2.15'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -26,12 +27,8 @@ end
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 
+gem 'postgres'
 gem 'pg'
-#for db change, may delete
-gem 'yaml_db', github: 'jetthoughts/yaml_db'
-#heroku staff
-gem 'rails_12factor', group: :production
-#gem 'formalize-rails'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
