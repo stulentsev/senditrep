@@ -8,7 +8,6 @@ class MainController < ApplicationController
 		end
     end
     
-
     def quote
     	quote = collectQuote(params,params[:delivery_id])
     	if quote.nil? || quote.price.nil?
@@ -18,7 +17,8 @@ class MainController < ApplicationController
     	else
 	    	render json: { 
 	    		:code => true,
-	    		:company => quote.companyName,
+	    		:companyName => quote.companyName,
+	    		:companyLink => quote.companyLink,
 	    		:typeName => quote.typeName, 
 	    		:price => quote.price,
 	    		:days => quote.time
@@ -27,7 +27,6 @@ class MainController < ApplicationController
     end
 
     private
-
 		def collectQuote(params,delivery_id)
 			delivery = Delivery.find(delivery_id)
 			begin

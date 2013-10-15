@@ -1,3 +1,4 @@
+$(function(){
 //hide all warning notifications
 $('#notification').css("display","none");
 
@@ -5,7 +6,7 @@ $('#notification').css("display","none");
 var content = "<%= escape_javascript render(:partial => 'main/result')%>";
 $('#result_placeholder').html(content);
 $('#load').show();
-//transfer parameters to ajax
+//prepare transfer of parameters to ajax
 var parameters = {
 	from:"<%=params[:from]%>",
 	to:"<%=params[:to]%>",
@@ -29,9 +30,11 @@ for (index in delivery_ids){
 	 		add_row(content,$("#resultTable tbody"));
 	 	}
 	 	num+=1;
+	 	//check if last deliveries to stop load animation and check if found something
 	 	if (num==number_of_deliveries){
 	 		console.log("delete!");
 	 		$('#load').hide();
 	 	}
 	});
 }
+});
