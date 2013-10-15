@@ -1,17 +1,7 @@
 /*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
- * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the top of the
- * compiled file, but it's generally better to create a new file per style scope.
- *
  *= require_self
  *= require_tree .
  *= require jquery.ui.autocomplete
- *= require jquery.ui.slider
  */
 *{
 	font-family: "Trebuchet MS";
@@ -88,22 +78,22 @@ body{
 	background-color:#fff;
 	padding: 20px 0;
 }
-.resultTable{
+#resultTable{
 	 border-collapse: collapse;
 	 margin:0 10px;
 }
-.resultTable td{
+#resultTable td{
 	border-bottom: 1px solid #afafaf;	
 	margin: 0px;
 }
-.resultTable th{
+#resultTable th{
 	background-color:#aacdff;
 }
-.resultTable th, .resultTable td{
+#resultTable th, .resultTable td{
 	text-align:left;
 	width:240px;
 }
-.resultTable th:last-child, .resultTable td:last-child{
+#resultTable th:last-child, .resultTable td:last-child{
 	width:220px;
 }
 

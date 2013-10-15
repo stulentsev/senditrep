@@ -5,6 +5,8 @@ Send::Application.routes.draw do
   post "/", to: "main#index"
   post 'main/result', to: "main#result"
   get 'main/result', to: "main#result"
+  get 'main/quote', to: "main#quote"
+  post 'main/quote', to: "main#quote"
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

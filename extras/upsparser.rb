@@ -12,6 +12,6 @@ class UpsParser
 	private
 
 	def self.definePriceAndTime(params,extra)
-		
+		[nil,nil]
 	end
 end

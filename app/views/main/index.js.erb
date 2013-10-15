@@ -1,5 +1,5 @@
 var message = '';
-<% if params[:from].blank? %>
+<% if params[:from].blank? %>	
 	message += ' город отправления,';
 <% end %>
 <% if params[:to].blank? %>
@@ -8,6 +8,7 @@ var message = '';
 <% if params[:weight].blank? %>
 	message += ' вес посылки или габариты посылки.';
 <% end %>
+console.log(message);
 if (message!='')
 	{
 	message = "Заполните поля:"+message;
@@ -17,8 +18,5 @@ if (message!='')
 	}
 else
 	{
-		$('#notification').css("display","none");
-		var content = "<%= escape_javascript render(:partial => 'main/result')%>";
-		$('#result_placeholder').html(content);
+		<%=render :partial =>"table.js.erb"%>	
 	}
-

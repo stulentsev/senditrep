@@ -1,36 +1,48 @@
 class MainController < ApplicationController
 	
 	def index
-		if !(params[:from].blank?||params[:to].blank?)#не выполняем блок при первичной загрузке
-			#Достаём все возможные варианты доставки из БД
-			@providersQuote = collectQuotes(params)
-		end
-
+		@delivery_ids = Delivery.all.map{|d| d.id}
 		respond_to do |format|
 			format.html
 			format.js
 		end
     end
+    
+
+    def quote
+    	quote = collectQuote(params,params[:delivery_id])
+    	if quote.nil? || quote.price.nil?
+    		render json:{
+    			:code => false
+    		}
+    	else
+	    	render json: { 
+	    		:code => true,
+	    		:company => quote.companyName,
+	    		:typeName => quote.typeName, 
+	    		:price => quote.price,
+	    		:days => quote.time, 
+	    		:html => "...insert html..." 
+	    	} 
+	    end
+    end
 
     private
 
-    	def collectQuotes(params)
-    		deliveries = Delivery.all
-			providersQuote = []
-			#Добавляем в @providersQuote результаты всех парсеров. Имя парсера из БД
-			deliveries.each do |delivery|
-				begin
-					parserEntity = DeliveryParser.new(delivery.name.constantize)
-					parserResult = parserEntity.quotes(params,
-											[delivery.extra2,delivery.extra3])
-					parserResult.typeName = delivery.extra1
-					parserResult.companyLink = delivery.website
-					providersQuote << parserResult
-				rescue Exception => msg
-					Rails.logger.info "Message"
-					Rails.logger.info msg
-				end
+		def collectQuote(params,delivery_id)
+			delivery = Delivery.find(delivery_id)
+			begin
+				parserEntity = DeliveryParser.new(delivery.name.constantize)
+				parserResult = parserEntity.quotes(params,
+										[delivery.extra2,delivery.extra3])
+				parserResult.typeName = delivery.extra1
+				parserResult.companyLink = delivery.website
+				
+			rescue Exception => msg
+				Rails.logger.info "Message"
+				Rails.logger.info msg
+				parserResult = nil;
 			end
-			providersQuote
+			parserResult
 		end
 end

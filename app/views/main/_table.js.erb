@@ -1,0 +1,31 @@
+//hide all warning notifications
+$('#notification').css("display","none");
+
+//add the table headers
+var content = "<%= escape_javascript render(:partial => 'main/result')%>";
+$('#result_placeholder').html(content);
+
+		
+var parameters = {
+	from:"<%=params[:from]%>",
+	to:"<%=params[:to]%>",
+	weight:"<%=params[:weight]%>",
+	price:"<%=params[:price]%>",
+	isdocument:"<%=params[:isdocument]%>",
+	width:"<%=params[:width]%>",
+	height:"<%=params[:height]%>",
+	length:"<%=params[:lengt]%>"
+};
+
+var delivery_ids = <%= raw @delivery_ids.to_json %>;
+//add the rows
+for (id in delivery_ids){
+	parameters["delivery_id"]=delivery_ids[id];
+	$.post( "main/quote.json",parameters, function( content ) {
+	 	if (content.code)
+	 	{
+	 		add_row(content,$("#resultTable tbody"));
+	 		
+	 	}
+	});
+}
