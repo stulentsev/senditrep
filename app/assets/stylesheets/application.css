@@ -97,7 +97,14 @@ body{
 	width:220px;
 }
 
-
+#load{
+	width:100%;
+}
+#load img{
+	display:block;
+	margin:0 auto;
+	width:40px;
+}
 /*footer*/
 .footer span{
 	display:inline-block;

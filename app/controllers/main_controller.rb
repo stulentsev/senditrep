@@ -21,8 +21,7 @@ class MainController < ApplicationController
 	    		:company => quote.companyName,
 	    		:typeName => quote.typeName, 
 	    		:price => quote.price,
-	    		:days => quote.time, 
-	    		:html => "...insert html..." 
+	    		:days => quote.time
 	    	} 
 	    end
     end

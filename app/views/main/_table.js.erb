@@ -4,8 +4,8 @@ $('#notification').css("display","none");
 //add the table headers
 var content = "<%= escape_javascript render(:partial => 'main/result')%>";
 $('#result_placeholder').html(content);
-
-		
+$('#load').show();
+//transfer parameters to ajax
 var parameters = {
 	from:"<%=params[:from]%>",
 	to:"<%=params[:to]%>",
@@ -18,14 +18,20 @@ var parameters = {
 };
 
 var delivery_ids = <%= raw @delivery_ids.to_json %>;
+var number_of_deliveries = delivery_ids.length;
+var num = 0;
 //add the rows
-for (id in delivery_ids){
-	parameters["delivery_id"]=delivery_ids[id];
+for (index in delivery_ids){
+	parameters["delivery_id"]=delivery_ids[index];
 	$.post( "main/quote.json",parameters, function( content ) {
 	 	if (content.code)
 	 	{
 	 		add_row(content,$("#resultTable tbody"));
-	 		
+	 	}
+	 	num+=1;
+	 	if (num==number_of_deliveries){
+	 		console.log("delete!");
+	 		$('#load').hide();
 	 	}
 	});
 }
