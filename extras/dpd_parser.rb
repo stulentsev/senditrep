@@ -18,7 +18,7 @@ class DpdParser
 	end
 
 	def self.formOperation(params,extra)
-		client = Savon.new("http://wstest.dpd.ru/services/calculator2?wsdl")
+		client = Savon.new("#{Rails.root}/extras/dpd/dpd_price.wsdl")
 		service_name = "DPDCalculatorService"
 		port_name = "DPDCalculatorPort"
 		operation_name = :getServiceCost

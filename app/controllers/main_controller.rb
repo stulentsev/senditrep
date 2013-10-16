@@ -9,6 +9,7 @@ class MainController < ApplicationController
     end
     
     def quote
+    	params_validation()
     	quote = collectQuote(params,params[:delivery_id])
     	if quote.nil? || quote.price.nil?
     		render json:{
@@ -43,4 +44,11 @@ class MainController < ApplicationController
 			end
 			parserResult
 		end
+
+		def params_validation()
+	    	params[:weight] = params[:weight].gsub(",",".").to_f
+	    	params[:height] = params[:height].gsub(",",".").to_f
+	    	params[:width] = params[:width].gsub(",",".").to_f
+	    	params[:length] = params[:length].gsub(",",".").to_f
+	    end
 end
