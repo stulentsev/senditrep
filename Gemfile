@@ -10,6 +10,9 @@ gem 'json'
 gem 'httparty'
 # for soap APIs
 gem 'savon', :git => 'git://github.com/savonrb/savon.git'
+# for UPS and major
+gem 'active_shipping'
+
 gem 'nokogiri'
 gem 'capistrano', '~> 2.15'
 # Gems used only for assets and not required
@@ -30,6 +33,8 @@ gem 'jquery-ui-rails'
 gem 'pg'
 gem "mysql2"
 
+
+gem 'figaro'
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

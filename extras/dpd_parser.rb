@@ -25,19 +25,18 @@ class DpdParser
 		operation = client.operation(service_name, port_name, operation_name)
 		
 		operation.header = {}
-		client_key = "0CD22FE67E157E70D4DAC68375EA71D14EAA9C42"
 		
 		operation.body = {:getServiceCost=>
 							{:request=>
 								{:auth=>
-									{:clientNumber=>1001030075, 
-									:clientKey=>client_key}, 
+									{:clientNumber => ENV["DPD_CLIENT_NUMBER"], 
+									:clientKey => ENV["DPD_CLIENT_KEY"]}, 
 								:pickup=>
 									{ 
-									:cityName=>params[:from]}, 
+									:cityName => params[:from]}, 
 								:delivery=>
 									{
-									:cityName=>params[:to]}, 
+									:cityName => params[:to]}, 
 								:selfPickup=>false, 
 								:selfDelivery=>false, 
 								:weight=>params[:weight],

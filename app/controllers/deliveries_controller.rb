@@ -1,5 +1,5 @@
 class DeliveriesController < ApplicationController
-  http_basic_authenticate_with name: "dhh", password: "secret"
+  http_basic_authenticate_with name: ENV["EDIT_NAME"], password: ENV["EDIT_PASSWORD"]
   # GET /deliveries
   # GET /deliveries.json
   def index
