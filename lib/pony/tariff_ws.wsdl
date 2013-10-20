@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- See description at http://www.ponyexpress.ru/tools/tariff_request.html -->
+
+<definitions name="PonyRates"
+	
+	
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:ptypens="http://www.ponyexpress.ru/XMLSchema/Rate/v1.0"
+	xmlns:tns="http://www.ponyexpress.ru/WSDL/Rate/v1.0"
+	targetNamespace="http://www.ponyexpress.ru/WSDL/Rate/v1.0">
+
+<types>
+	<xsd:schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.ponyexpress.ru/XMLSchema/Rate/v1.0">
+	<xsd:element name="getRateRequest">
+		<xsd:complexType>
+			<xsd:all>
+				<xsd:element minOccurs="0" name="calc_date" type="xsd:date"/>
+				<xsd:element minOccurs="0" name="org_city" type="xsd:string"/>
+				<xsd:element minOccurs="0" name="org_citycode" type="xsd:string"/> 
+				<xsd:element minOccurs="0" name="org_postcode" type="xsd:string"/> 
+				<xsd:element minOccurs="0" name="org_region" type="xsd:string"/> 
+				<xsd:element minOccurs="0" name="org_district" type="xsd:string"/> 
+				<xsd:element minOccurs="0" name="dest_city" type="xsd:string"/> 
+				<xsd:element minOccurs="0" name="dest_citycode" type="xsd:string"/> 
+				<xsd:element minOccurs="0" name="dest_postcode" type="xsd:string"/> 
+				<xsd:element minOccurs="0" name="dest_region" type="xsd:string"/> 
+				<xsd:element minOccurs="0" name="dest_district" type="xsd:string"/> 
+				<xsd:element minOccurs="1" name="item_count" type="xsd:int"/> 
+				<xsd:element minOccurs="1" name="weight" type="xsd:float"/> 
+				<xsd:element minOccurs="1" name="direction" type="xsd:int"/> 
+				<xsd:element minOccurs="1" name="delivery_mode" type="xsd:int"/> 
+				<xsd:element minOccurs="0" name="contract1" type="xsd:string"/> 
+				<xsd:element minOccurs="0" name="contract2" type="xsd:string"/> 
+				<xsd:element minOccurs="0" name="access_number" type="xsd:string"/> 
+				<xsd:element minOccurs="0" name="is_doconly" type="xsd:boolean"/> 
+				<xsd:element minOccurs="0" name="is_large" type="xsd:boolean"/> 
+				<xsd:element minOccurs="0" name="is_dangerous" type="xsd:boolean"/> 
+				<xsd:element minOccurs="0" name="currency_code" type="xsd:string"/> 
+			</xsd:all>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="getRateResponse">
+		<xsd:complexType>
+			<xsd:all>
+				<xsd:element name="tariff" type="xsd:float"/>
+				<xsd:element name="tariff_including_vat" type="xsd:float"/>
+				<xsd:element name="delivery_days" type="xsd:int"/>
+				<xsd:element name="calc_weight" type="xsd:float"/>
+				<xsd:element name="error_code" type="xsd:int"/>
+				<xsd:element name="error_message" type="xsd:string"/>
+			</xsd:all>
+		</xsd:complexType>
+	</xsd:element>
+	</xsd:schema>
+</types>
+ 
+ 
+<message name="getRateInput">
+     <part name="Body" element="ptypens:getRateRequest"/>
+</message>
+ 
+<message name="getRateOutput">
+     <part name="Body" element="ptypens:getRateResponse"/>
+</message>
+
+<portType name="PonyRatesPortType">
+ <operation name="getRate">
+  <input message="tns:getRateInput"/>
+  <output message="tns:getRateOutput"/>
+ </operation>
+</portType>
+
+<binding name="PonyRatesBinding" type="tns:PonyRatesPortType">
+ <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+ <operation name="getRate">
+  <soap:operation soapAction="urn:PonyRatesAction"/>
+  <input>
+   <soap:body parts="Body" use="literal" />
+  </input>
+  <output>
+   <soap:body parts="Body" use="literal" />
+  </output>
+ </operation>
+</binding>
+
+<service name="PonyRatesService">
+ <documentation>Calculation of PonyExpress delivery rates. Parameter description see at http://www.ponyexpress.ru/tools/tariff_request.html</documentation>
+ <port name="PonyRatesPort" binding="tns:PonyRatesBinding">
+  <soap:address location="http://www.ponyexpress.ru/tools/tariff_ws.php"/>
+ </port>
+</service>
+</definitions> 

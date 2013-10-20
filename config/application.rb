@@ -30,7 +30,7 @@ module Send
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
 
-    # Autoload extras folder including all subdirectories
-    config.autoload_paths += %W(#{config.root}/extras)
+    # Autoload lib folder including all subdirectories
+    config.autoload_paths += %W(#{Rails.root}/lib)
   end
 end
