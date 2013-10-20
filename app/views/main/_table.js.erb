@@ -1,40 +1,43 @@
 $(function(){
-//hide all warning notifications
-$('#notification').css("display","none");
+	//hide all warning notifications
+	$('#notification').css("display","none");
 
-//add the table headers
-var content = "<%= escape_javascript render(:partial => 'main/result')%>";
-$('#result_placeholder').html(content);
-$('#load').show();
-//prepare transfer of parameters to ajax
-console.log("<%=params[:weight].to_f%>");
-var parameters = {
-	from:"<%=params[:from]%>",
-	to:"<%=params[:to]%>",
-	weight:"<%=params[:weight]%>",
-	price:"<%=params[:price]%>",
-	isdocument:"<%=params[:isdocument]%>",
-	width:"<%=params[:width]%>",
-	height:"<%=params[:height]%>",
-	length:"<%=params[:lengt]%>"
-};
+	//remove all previous ajax requests
+	if (typeof xhr_pool != 'undefined'){
+		xhr_pool.forEach(function(xhr){
+			xhr.abort();
+		});
+	}
+	//initialize or zerofy xhr_pool
+	xhr_pool = [];
+	//add the table headers
+	var content = "<%= j render(:partial => 'main/result')%>";
+	$('#result_placeholder').html(content);
+	$('#load').show();
+	//transfer params in ajax request
+	var parameters = <%= raw params.to_json %>;
+	//ids of deliveries to track
+	var delivery_ids = <%= raw @delivery_ids.to_json %>;
+	// number of deliveries to understand when to stop
+	var number_of_deliveries = delivery_ids.length;
+	var num = 0;
 
-var delivery_ids = <%= raw @delivery_ids.to_json %>;
-var number_of_deliveries = delivery_ids.length;
-var num = 0;
-//add the rows
-for (index in delivery_ids){
-	parameters["delivery_id"]=delivery_ids[index];
-	$.post( "main/quote.json",parameters, function( content ) {
-	 	if (content.code)
-	 	{
-	 		add_row(content,$("#resultTable tbody"));
-	 	}
-	 	num+=1;
-	 	//check if last deliveries to stop load animation and check if found something
-	 	if (num==number_of_deliveries){
-	 		$('#load').hide();
-	 	}
-	});
-}
+
+	//add the rows
+	for (index in delivery_ids){
+		parameters["delivery_id"]=delivery_ids[index];
+		var xhr = $.post( "main/quote.json",parameters, function( content ) {
+		 	if (content.code)
+		 	{
+		 		addRow(content,$("#resultTable tbody"));
+		 	}
+		 	num+=1;
+		 	//check if last deliveries to stop load animation
+		 	//and check if found something
+		 	if (num==number_of_deliveries){
+		 		$('#load').hide();
+		 	}
+		});
+		xhr_pool.push(xhr);
+	}
 });

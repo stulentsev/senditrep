@@ -10,6 +10,7 @@ class MainController < ApplicationController
     
     def quote
     	params_validation()
+
     	quote = collectQuote(params,params[:delivery_id])
     	if quote.nil? || quote.price.nil?
     		render json:{
