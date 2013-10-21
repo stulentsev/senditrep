@@ -31,14 +31,14 @@ class UpsParser
 												  :key => ENV["UPS_KEY"])
 		begin
 			response = ups.find_rates(origin, destination, packages)
-			p response.rates[0].methods - Object.methods
-			ups_rates = response.rates.collect {|rate| [rate.service_name, rate.price, rate.delivery_date]}
+			ups_rates = response.rates.collect{|rate| [rate.service_name, rate.price, rate.delivery_date]}.first
 			p ups_rates			
 		rescue Exception=>e
 			p e
-		ensure
-			puts "**************************"
-		end			
-		[ups_rates[0][1].to_f/100,200]
+			return [nil,nil]
+		end
+		#count how many days by date
+		days = ((ups_rates[2].to_i - DateTime.now.to_i).to_f/60/60/24).ceil
+		[ups_rates[1].to_f/100,days]
 	end
 end

@@ -12,7 +12,6 @@ class City < ActiveRecord::Base
 			end
 			city = city.first
 		end
-		p [city.city_name, city.city_region, city.indices.first.city_index]
 		[city.city_name, city.city_region, city.indices.first.city_index]
 	end
 end
