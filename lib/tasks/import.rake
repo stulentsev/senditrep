@@ -30,5 +30,48 @@ namespace :import do
     end
       
   end
-  
+
+  desc "Import all locations with indexes and regions in DB"
+  task :all => :environment do
+    result = 0
+    File.open('./lib/tasks/city.csv').each_line do|line|
+      line = line.gsub("\n","").split(";")
+      next if line[3].nil?
+      next if line[3].empty?
+      line[3] = line[3].split(",")
+      result = City.create!({
+        :city_name => line[0],
+        :city_region => line[1],
+        :center => !line[2].empty?
+      })
+      line[3].each do |index|
+        result.indices.create({
+            :city_index => index.to_i
+          })
+      end
+      p result
+    end
+  end
+
+  desc "Export all cities with regions to js array"
+  task :export_all_json => :environment do
+    f = File.new('./lib/tasks/city_and_region.txt', "w")
+    f.write "["
+    City.all.each do |city|
+      if city.center
+        line = "\"#{city.city_name}\","
+      else
+        if city.city_region == "Москва"
+          line = "\"#{city.city_name}, Московская обл.\","
+        elsif city.city_region == "Санкт-Петербург"
+          line = "\"#{city.city_name}, Ленинградская обл.\","
+        else
+          line = "\"#{city.city_name}, #{city.city_region}\","
+        end
+      end
+      f.write line
+      p line
+    end
+    f.write "];"
+  end
 end

@@ -47,6 +47,9 @@ class MainController < ApplicationController
 		end
 
 		def params_validation()
+			params[:city_from], params[:region_from], 
+					params[:index_from] = City.parseAddress(params[:from])
+
 	    	params[:weight] = params[:weight].gsub(",",".").to_f
 	    	params[:height] = params[:height].gsub(",",".").to_f
 	    	params[:width] = params[:width].gsub(",",".").to_f

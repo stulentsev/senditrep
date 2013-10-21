@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   private
   
   def reload_libs
-    Dir["#{Rails.root}/extras/**/*.rb"].each { |path| require_dependency path }
+    Dir["#{Rails.root}/lib/**/*.rb"].each { |path| require_dependency path }
   end
 
   def define_bottom_links  	

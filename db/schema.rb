@@ -11,13 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131007133252) do
+ActiveRecord::Schema.define(version: 20131020115041) do
 
   create_table "cdek_locations", force: true do |t|
     t.integer  "num"
     t.string   "cityname"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "cities", force: true do |t|
+    t.string   "city_name"
+    t.string   "city_region"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "center"
   end
 
   create_table "deliveries", force: true do |t|
@@ -34,6 +42,13 @@ ActiveRecord::Schema.define(version: 20131007133252) do
     t.string   "locationtype"
     t.string   "name"
     t.string   "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "indices", force: true do |t|
+    t.integer  "city_index"
+    t.integer  "city_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
