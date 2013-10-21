@@ -25,8 +25,8 @@ class EmsParser
 		apiSite = 'http://emspost.ru/api/rest'
 		apiQuery = {:query => 
 			{:method => 'ems.calculate',
-				:from => Emslocation.locationCode(params[:from]),
-				:to => Emslocation.locationCode(params[:to]),
+				:from => Emslocation.locationCode(params[:city_from]),
+				:to => Emslocation.locationCode(params[:city_to]),
 				:weight=>params[:weight]}}
 		resp = get(apiSite,apiQuery).parsed_response
 		resp

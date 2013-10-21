@@ -5,7 +5,7 @@ class UpsParser
 	def self.quotes(params,extra)
 		quote = Quote.new()
 		quote.companyName = 'UPS'
-		quote.price, quote.time = [nil,nil]#UpsParser.definePriceAndTime(params,extra)
+		quote.price, quote.time = UpsParser.definePriceAndTime(params,extra)
 		quote
 	end
 
@@ -16,7 +16,7 @@ class UpsParser
 		# Package up a poster and a Wii for your nephew.
 		packages = [
 		  Package.new(  params[:weight]*1000,      	#  grams to kg
-		                [93,10,20])         # cylinders have different volume calculations
+		                [1,1,1])         
 		]
 
 		# You live in Beverly Hills, he lives in Ottawa

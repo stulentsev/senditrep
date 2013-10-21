@@ -30,9 +30,9 @@ class CdekParser
 
 	def self.formBody(params,extra)
 		senderCityId = CdekLocation.find_by_cityname(
-						params[:from].mb_chars.downcase).num.to_s
+						params[:city_from].mb_chars.downcase).num.to_s
 		receiverCityId = CdekLocation.find_by_cityname(
-						params[:to].mb_chars.downcase).num.to_s
+						params[:city_to].mb_chars.downcase).num.to_s
 
 		body = { 
 			"version"=>"1.0",

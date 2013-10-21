@@ -29,8 +29,8 @@ class PonyParser
 		direction = params[:from]==params[:to]?3:2 
 		
 		operation = client.operation(service_name, port_name, operation_name)
-		operation.body = {:getRateRequest=>{:org_city=>params[:from],
-											:dest_city=>params[:to],
+		operation.body = {:getRateRequest=>{:org_city=>params[:city_from],
+											:dest_city=>params[:city_to],
 											:item_count=>1,
 											:weight=>params[:weight],
 											:direction=>direction,

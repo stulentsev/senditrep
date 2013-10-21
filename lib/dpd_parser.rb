@@ -33,10 +33,10 @@ class DpdParser
 									:clientKey => ENV["DPD_CLIENT_KEY"]}, 
 								:pickup=>
 									{ 
-									:cityName => params[:from]}, 
+									:cityName => params[:city_from]}, 
 								:delivery=>
 									{
-									:cityName => params[:to]}, 
+									:cityName => params[:city_to]}, 
 								:selfPickup=>false, 
 								:selfDelivery=>false, 
 								:weight=>params[:weight],

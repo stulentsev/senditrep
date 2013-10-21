@@ -35,7 +35,7 @@ namespace :import do
   task :all => :environment do
     result = 0
     File.open('./lib/tasks/city.csv').each_line do|line|
-      line = line.gsub("\n","").split(";")
+      line = line.gsub("\n","").mb_chars.downcase.split(";")
       next if line[3].nil?
       next if line[3].empty?
       line[3] = line[3].split(",")
@@ -54,19 +54,19 @@ namespace :import do
   end
 
   desc "Export all cities with regions to js array"
-  task :export_all_json => :environment do
+  task :export_all_js => :environment do
     f = File.new('./lib/tasks/city_and_region.txt', "w")
     f.write "["
     City.all.each do |city|
       if city.center
-        line = "\"#{city.city_name}\","
+        line = "\"#{city.city_name.mb_chars.titleize}\","
       else
         if city.city_region == "Москва"
-          line = "\"#{city.city_name}, Московская обл.\","
+          line = "\"#{city.city_name.mb_chars.titleize}, Московская обл.\","
         elsif city.city_region == "Санкт-Петербург"
-          line = "\"#{city.city_name}, Ленинградская обл.\","
+          line = "\"#{city.city_name.mb_chars.titleize}, Ленинградская обл.\","
         else
-          line = "\"#{city.city_name}, #{city.city_region}\","
+          line = "\"#{city.city_name.mb_chars.titleize}, #{city.city_region.mb_chars.titleize}\","
         end
       end
       f.write line
