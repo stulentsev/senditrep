@@ -31,6 +31,7 @@ class UpsParser
 												  :key => ENV["UPS_KEY"])
 		begin
 			response = ups.find_rates(origin, destination, packages)
+			p response.rates
 			ups_rates = response.rates.collect{|rate| [rate.service_name, rate.price, rate.delivery_date]}.first
 			p ups_rates			
 		rescue Exception=>e
