@@ -23,6 +23,7 @@ class MainController < ApplicationController
 	    		:companyLink => quote.companyLink,
 	    		:typeName => quote.typeName, 
 	    		:price => quote.price,
+	    		:image_url => quote.image_url,
 	    		:days => quote.time
 	    	} 
 	    end
@@ -37,7 +38,7 @@ class MainController < ApplicationController
 										[delivery.extra2,delivery.extra3])
 				parserResult.typeName = delivery.extra1
 				parserResult.companyLink = delivery.website
-				
+				parserResult.image_url = delivery.image_url
 			rescue Exception => msg
 				Rails.logger.info "Message"
 				Rails.logger.info msg

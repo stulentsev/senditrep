@@ -3,7 +3,7 @@ class PonyParser
 	def self.quotes(params,extra)
 		quote = Quote.new()
 		quote.companyName = 'Pony Express'
-		quote.price,quote.time=[200,2]#PonyParser.definePriceAndTime(params,extra)
+		quote.price,quote.time=PonyParser.definePriceAndTime(params,extra)
 		quote
 	end
 

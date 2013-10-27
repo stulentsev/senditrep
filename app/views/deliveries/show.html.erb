@@ -1,5 +1,4 @@
-<p id="notice"><%= notice %></p>
-
+<div class = "window">
 <p>
   <b>Name:</b>
   <%= @delivery.name %>
@@ -22,6 +21,10 @@
   <b>Extra:</b>
   <%= @delivery.extra3 %>
 </p>
-
+<p>
+  <b>Image:</b>
+  <%= @delivery.image_url %>
+</p>
 <%= link_to 'Edit', edit_delivery_path(@delivery) %> |
 <%= link_to 'Back', deliveries_path %>
+</div>

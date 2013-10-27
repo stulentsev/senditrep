@@ -84,6 +84,6 @@ class DeliveriesController < ApplicationController
   private
 
     def delivery_params
-      params.require(:delivery).permit(:name, :website, :extra1, :extra2, :extra3)
+      params.require(:delivery).permit(:name, :website, :extra1, :extra2, :extra3,:image_url)
     end
 end

@@ -3,7 +3,8 @@
 //table is jquery object of target table
 var  addRow = function(content,table){
  	var row = "<tr>";
- 	row += "<td><a href='"+content.companyLink+"'>"+content.companyName+"</a></td>";
+ 	row += "<td><a href = '"+content.companyLink;
+ 	row +="'><img src = '" + content.image_url +"'/></a></td>";
  	row += "<td>"+content.typeName+"</td>";
  	row += "<td>"+content.price+"</td>";
  	row += "<td>"+content.days+"</td>";
@@ -16,3 +17,6 @@ var prepareParameters = function(params){
 	result = result.replace(new RegExp("=&gt;", "g"),":");
 	return(result);
 }
+
+
+ 	
