@@ -1,11 +1,13 @@
 class UpsParser
-	require 'active_shipping'
-	include ActiveMerchant::Shipping
+	require 'net/http'
+	require 'net/https'
+	#require 'active_shipping'
+	#include ActiveMerchant::Shipping
 
 	def self.quotes(params,extra)
 		quote = Quote.new()
 		quote.companyName = 'UPS'
-		quote.price, quote.time = [nil,nil]#UpsParser.definePriceAndTime(params,extra)
+		quote.price, quote.time = UpsParser.definePriceAndTime(params,extra)
 		quote
 	end
 
@@ -13,54 +15,111 @@ class UpsParser
 	private
 
 	def self.definePriceAndTime(params,extra)
-		# #Savon realization
-		client = Savon.new("http://secret.fruityfree.webfactional.com/RateWS.wsdl")
-	
-		service_name = :RateService
-		port_name    = :RatePort
-		operation_name = :ProcessRate
-		operation = client.operation(service_name, port_name, operation_name)
-		puts "*************************"
+		#forming a request to UPS server
+		#header for auth
+		header = UpsParser.form_header()
+		#body of request
+		body = UpsParser.form_body(params)
+		request = header.to_xml + body.to_xml
+		#puts request
+		
+		#parse the url
+		ups_url = "https://onlinetools.ups.com/ups.app/xml/Rate"
+		uri = URI.parse(ups_url)
+
+		#POST request
+		http = Net::HTTP.new(uri.host, uri.port)
+		http.use_ssl = true
+		headers = {'Content-Type'=> 'application/x-www-form-urlencoded'}
 		begin
-			result = operation.example_header
-			p result
-		rescue=>e
+			resp = http.post(uri.path, request, headers).body
+			resp_xml = Nokogiri::XML.parse(resp)
+			if resp_xml.xpath("//ResponseStatusCode").text == "1"
+				price = resp_xml.xpath("//TotalCharges//MonetaryValue").first.text
+				days = resp_xml.xpath("//GuaranteedDaysToDelivery").first.text
+				return [price,days]
+			end
+		rescue => e
 			puts e
-			#puts e.backtrace
 		end
-		[result,2]
+		[nil,nil]
+	end
+
+
+	def self.form_header()
+		Nokogiri::XML::Builder.new do |xml|
+			xml.AccessRequest(xml:lang="en-US") {
+			  xml.AccessLicenseNumber ENV["UPS_KEY"]
+			  xml.UserId ENV["UPS_LOGIN"]
+			  xml.Password ENV["UPS_PASSWORD"]
+			}
+		end
+	end
+
+	def self.form_body(params)
+		p params[:index_from].to_s
+		Nokogiri::XML::Builder.new do |xml|
+			xml.RatingServiceSelectionRequest(xml:lang="en-US") {
+			  xml.Request{
+			  	xml.TransactionReference{
+			  		xml.CustomerContext "Rating and Service"
+			  		xml.XpciVersion "1.0"
+			  	}
+			  	xml.RequestAction "Rate"
+			  	xml.RequestOption "Rate"
+			  }
+			  xml.PickupType{
+			  	xml.Code "06"
+			  	xml.Description "Rate"
+			  }
+			  xml.Shipment{
+			  	xml.Description "Rate Description"
+			  	xml.Shipper{
+			  		xml.Name "SendIt"
+			  		xml.PhoneNumber "79266060314"
+			  		xml.Address{
+			  			xml.PostalCode "101000"
+			  			xml.CountryCode "RU"
+			  		}
+			  	}
+			  	xml.ShipTo{
+			  		xml.CompanyName "Company"
+			  		xml.PhoneNumber "79266060314"
+			  		xml.Address{
+			  			xml.PostalCode params[:index_to]
+			  			xml.CountryCode "RU"
+			  		}
+			  	}
+			  	xml.ShipFrom{
+			  		xml.CompanyName "Second Company"
+			  		xml.PhoneNumber "79266060314"
+			  		xml.Address{
+			  			xml.PostalCode params[:index_from]
+			  			xml.CountryCode "RU"
+			  		}
+			  	}
+			  	xml.Service{
+			  		xml.Code "65"
+			  	}
+
+			  	xml.Package{
+			  		xml.PackagingType{
+			  			xml.Code "00"
+			  			xml.Description "UNKNOWN"
+			  		}
+			  		xml.Description "Rate"
+			  		xml.PackageWeight{
+			  			xml.UnitOfMeasurement{
+			  				xml.Code "KGS"
+			  			}
+			  			xml.Weight params[:weight]
+			  		}
+			  	}
+			  	xml.ShipmentServiceOptions{
+
+			  	}
+			  }
+			}
+		end
 	end
 end
-
-
-
-
-# # Package up a poster and a Wii for your nephew.
-		# packages = [
-		#   Package.new(  params[:weight]*1000,      	#  grams to kg
-		#                 [1,1,1])         
-		# ]
-
-		# # You live in Beverly Hills, he lives in Ottawa
-		# origin = Location.new(      :country => 'RU',
-		#                             :zip => '101000')
-
-		# destination = Location.new( :country => 'RU',
-		#                             :postal_code => '196142')
-
-		# # Find out how much it'll be.
-		# ups = UPS.new(:login => ENV["UPS_LOGIN"], :password => ENV["UPS_PASSWORD"],
-		# 										  :key => ENV["UPS_KEY"],
-		# 										  :currentcy => 'rur')
-		# begin
-		# 	response = ups.find_rates(origin, destination, packages)
-		# 	p response.rates
-		# 	ups_rates = response.rates.collect{|rate| [rate.service_name, rate.price, rate.delivery_date]}.first
-		# 	p ups_rates			
-		# rescue Exception=>e
-		# 	p e
-		# 	return [nil,nil]
-		# end
-		# #count how many days by date
-		# days = ((ups_rates[2].to_i - DateTime.now.to_i).to_f/60/60/24).ceil
-		# [ups_rates[1].to_f/100,days]

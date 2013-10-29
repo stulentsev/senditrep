@@ -6,7 +6,7 @@ class EmsParser
 	def self.quotes(params,extra)		
 		quote = Quote.new()
 		quote.companyName = 'EMS'
-		quote.price, quote.time =EmsParser.definePriceAndTime(params)
+		quote.price, quote.time =[200,2]#EmsParser.definePriceAndTime(params)
 		quote
 	end
 
