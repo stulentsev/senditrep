@@ -7,7 +7,7 @@ gem 'json'
 gem 'httparty'
 # for soap APIs
 gem 'savon', :git => 'git://github.com/savonrb/savon.git'
-gem 'active_shipping'
+
 gem 'nokogiri'
 
 group :assets do

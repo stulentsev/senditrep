@@ -1,9 +1,6 @@
 class UpsParser
 	require 'net/http'
 	require 'net/https'
-	#require 'active_shipping'
-	#include ActiveMerchant::Shipping
-
 	def self.quotes(params,extra)
 		quote = Quote.new()
 		quote.companyName = 'UPS'
