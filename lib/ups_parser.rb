@@ -57,7 +57,6 @@ class UpsParser
 	end
 
 	def self.form_body(params)
-		p params[:index_from].to_s
 		Nokogiri::XML::Builder.new do |xml|
 			xml.RatingServiceSelectionRequest(xml:lang="en-US") {
 			  xml.Request{
