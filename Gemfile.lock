@@ -21,15 +21,6 @@ GEM
       erubis (~> 2.7.0)
       rack (~> 1.5.2)
       rack-test (~> 0.6.2)
-    active_shipping (0.11.0)
-      active_utils (>= 1.0.1)
-      activesupport (>= 2.3.5)
-      builder
-      i18n
-      json (>= 1.5.1)
-    active_utils (2.0.1)
-      activesupport (>= 2.3.11)
-      i18n
     activemodel (4.0.0)
       activesupport (= 4.0.0)
       builder (~> 3.1.0)
@@ -151,7 +142,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  active_shipping
   capistrano (~> 2.15)
   coffee-rails
   figaro
