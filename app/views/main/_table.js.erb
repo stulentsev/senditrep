@@ -36,7 +36,6 @@ $(function(){
 		 	//and check if found something
 		 	if (num==number_of_deliveries){
 		 		$('#load').hide();
-		 		console.log($("#resultTable tr").length);
 		 		if ($("#resultTable tr").length<2){
 		 			var nothing = "<%= j render(:partial => 'main/nothing')%>";
 		 			$('#result_placeholder').html(nothing);

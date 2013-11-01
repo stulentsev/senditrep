@@ -4,7 +4,7 @@ development:
   database: send_development
   pool: 5
   username: fruityfree
-  password: unilever
+  password: ENV["DB_PASS"]
 test:
   adapter: postgresql
   encoding: unicode
@@ -17,4 +17,4 @@ production:
   host: localhost
   database: send
   username: fruityfree
-  password: unilever
+  password: ENV["DB_PASS"]
