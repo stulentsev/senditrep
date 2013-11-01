@@ -11,11 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131027051445) do
+ActiveRecord::Schema.define(version: 20131101140643) do
 
   create_table "cdek_locations", force: true do |t|
     t.integer  "num"
-    t.string   "cityname"
+    t.string   "city_name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

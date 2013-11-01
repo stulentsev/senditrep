@@ -3,7 +3,7 @@ class UpsParser
 	require 'net/https'
 	def self.quotes(params,extra)
 		quote = Quote.new()
-		quote.companyName = 'UPS'
+		quote.company_name = 'UPS'
 		quote.price, quote.time = UpsParser.definePriceAndTime(params,extra)
 		quote
 	end

@@ -5,7 +5,7 @@ class EmsParser
 	#return data as instance of Quote class
 	def self.quotes(params,extra)		
 		quote = Quote.new()
-		quote.companyName = 'EMS'
+		quote.company_name = 'EMS'
 		quote.price, quote.time =EmsParser.definePriceAndTime(params)
 		quote
 	end

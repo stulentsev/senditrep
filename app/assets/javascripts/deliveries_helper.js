@@ -3,10 +3,10 @@
 //table is jquery object of target table
 var  addRow = function(content,table){
  	var row = "<tr>";
- 	row += "<td><a href = '"+content.companyLink;
+ 	row += "<td><a href = '"+content.company_link;
  	row += "'><img src = '" + content.image_url;
- 	row += "'alt ='"+ content.companyName +"'/></a></td>";
- 	row += "<td>"+content.typeName+"</td>";
+ 	row += "'alt ='"+ content.company_name +"'/></a></td>";
+ 	row += "<td>"+content.type_name+"</td>";
  	row += "<td>"+content.price+"</td>";
  	row += "<td>"+content.days+"</td>";
  	row +="</tr>";

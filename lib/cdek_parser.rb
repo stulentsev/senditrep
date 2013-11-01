@@ -7,7 +7,7 @@ class CdekParser
 	#return data as instance of Quote class
 	def self.quotes(params,extra)		
 		quote = Quote.new()
-		quote.companyName = 'СДЭК'
+		quote.company_name = 'СДЭК'
 		quote.price, quote.time =CdekParser.definePriceAndTime(params,extra)
 		quote
 	end
@@ -20,7 +20,8 @@ class CdekParser
 		body = CdekParser.formBody(params,extra)
 
 
-		request = Net::HTTP::Post.new(uri.path, initheader = {'Content-Type' =>'application/json'})
+		request = Net::HTTP::Post.new(uri.path, 
+						initheader = {'Content-Type' =>'application/json'})
 		request.body = body
 		response = Net::HTTP.new(uri.host, uri.port).start {|http| http.request(request) }		
   		result = JSON.parse(response.body)
@@ -29,9 +30,9 @@ class CdekParser
 	end
 
 	def self.formBody(params,extra)
-		senderCityId = CdekLocation.find_by_cityname(
+		senderCityId = CdekLocation.find_by_city_name(
 						params[:city_from].mb_chars.downcase).num.to_s
-		receiverCityId = CdekLocation.find_by_cityname(
+		receiverCityId = CdekLocation.find_by_city_name(
 						params[:city_to].mb_chars.downcase).num.to_s
 
 		body = { 
@@ -40,13 +41,10 @@ class CdekParser
 			"receiverCityId"=>receiverCityId, 
 			"tariffId"=>extra[0], 
 			"goods"=>	
-				[ 
-					
-					{ 
+				[{ 
 						"weight"=>params[:weight], 
 						"volume"=>"0.001" 
-					} 
-				] 
+				}] 
 		}.to_json
 		body
 	end
