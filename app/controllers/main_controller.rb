@@ -1,4 +1,4 @@
-class MainController < ApplicationController
+	class MainController < ApplicationController
 	
 	def index
 		@delivery_ids = Delivery.all.map{|d| d.id}

@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  http_basic_authenticate_with name: ENV["EDIT_NAME"], password: ENV["EDIT_PASSWORD"], except: [:index,:show]
+  http_basic_authenticate_with name: ENV["EDIT_NAME"], password: ENV["EDIT_PASSWORD"], except: [:show]
   # GET /pages
   # GET /pages.json
   def index
