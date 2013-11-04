@@ -7,7 +7,7 @@
 			format.js
 		end
     end
-    
+
     def quote
     	params_validation()
 

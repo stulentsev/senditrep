@@ -8,7 +8,7 @@ class DpdParser
 
 	private
 	def self.definePriceAndTime(params,extra)
-		operation = DpdParser.formOperation(params,extra)
+		operation = DpdParser.form_operation(params,extra)
 		result = operation.call.body
 		if !result[:fault].blank?
 			return [nil,nil]
@@ -17,7 +17,7 @@ class DpdParser
 		[result[:cost],result[:days]]
 	end
 
-	def self.formOperation(params,extra)
+	def self.form_operation(params,extra)
 		client = Savon.new("#{Rails.root}/lib/dpd/dpd_price.wsdl")
 		service_name = "DPDCalculatorService"
 		port_name = "DPDCalculatorPort"

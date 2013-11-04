@@ -22,10 +22,57 @@ describe MainController do
 	end
 
 	describe "quote requests" do
-		it "gives request from ems"
-		it "gives request from dpd"
-		it "gives request from pony"
-		it "gives request from ups"
-		it "gives request from cdek"
+		before :all do 
+			city = FactoryGirl.create(:city)
+			city.indices.create(city_index:"101000")
+		end
+
+		it "gives request from ems" do
+			FactoryGirl.create(:emslocation)
+			delivery = FactoryGirl.create(:ems)
+			parameters = FactoryGirl.build(:delivery_params, delivery_id:delivery.id)
+			post :quote, parameters
+
+			parsed_body = JSON.parse(response.body)
+			parsed_body["code"].should == true
+		end
+		it "gives request from dpd" do
+			delivery = FactoryGirl.create(:dpd)
+			parameters = FactoryGirl.build(:delivery_params, delivery_id:delivery.id)
+
+			post :quote, parameters
+
+			parsed_body = JSON.parse(response.body)
+			parsed_body["code"].should == true
+		end
+
+		it "gives request from pony" do
+			delivery = FactoryGirl.create(:pony)
+			parameters = FactoryGirl.build(:delivery_params, delivery_id:delivery.id)
+
+			post :quote, parameters
+
+			parsed_body = JSON.parse(response.body)
+			parsed_body["code"].should == true
+		end
+		it "gives request from ups" do 
+			delivery = FactoryGirl.create(:ups)
+			parameters = FactoryGirl.build(:delivery_params, delivery_id:delivery.id)
+
+			post :quote, parameters
+
+			parsed_body = JSON.parse(response.body)
+			parsed_body["code"].should == true
+		end
+		it "gives request from cdek" do
+			delivery = FactoryGirl.create(:cdek)
+			FactoryGirl.create(:cdek_location)
+			parameters = FactoryGirl.build(:delivery_params, delivery_id:delivery.id)
+
+			post :quote, parameters
+
+			parsed_body = JSON.parse(response.body)
+			parsed_body["code"].should == true
+		end
 	end
 end
