@@ -1,5 +1,5 @@
 <%= form_tag '/', :remote=>'true',:method => 'post',:id => 'quotes-search' do %>
-  <div class = 'formpart'>
+<div class = 'formpart'>
   <div class="field">
     <%= label_tag :from, 'Город отправления*'%><br/>
     <%= text_field_tag :from, params[:from], :class => 'autocomplete' %><br/>

@@ -1,4 +1,10 @@
+//display "nothing found" in "place"
+var show_nothing_found = function(place){
+	var nothing = "<%= j render(:partial => 'main/nothing')%>";
+	$(place).html(nothing);
+}
 
+//main function, that form a result table
 $(function(){
 	//remove all previous ajax requests
 	if (typeof xhr_pool != 'undefined'){
@@ -35,8 +41,7 @@ $(function(){
 		 	if (num==number_of_deliveries){
 		 		$('#load').hide();
 		 		if ($("#resultTable tr").length<2){
-		 			var nothing = "<%= j render(:partial => 'main/nothing')%>";
-		 			$('#result_placeholder').html(nothing);
+		 			show_nothing_found('#result_placeholder');
 		 		}
 		 	}
 		});

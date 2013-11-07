@@ -1,19 +1,10 @@
-var message = '';
-<% if params[:from].blank? %>	
-	message += ' город отправления,';
-<% end %>
-<% if params[:to].blank? %>
-	message += ' город доставки,';
-<% end %>
-<% if params[:weight].blank? %>
-	message += ' вес посылки или габариты посылки.';
-<% end %>
-if (message!='')
+var parameters = <%= raw params.to_json %>;
+var message = check_parameters(parameters);
+
+if (message)
 	{
-	message = "Заполните поля:"+message;
-	message = message.substring(0,message.length-1);
-	$('#notification').css("display","block");
-	$('#notification').html(message);
+		$('#notification').css("display","block");
+		$('#notification').html(message);
 	}
 else
 	{

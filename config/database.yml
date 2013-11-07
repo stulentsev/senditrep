@@ -17,4 +17,4 @@ production:
   host: localhost
   database: send
   username: fruityfree
-  password: ENV["DB_PASS"]
+  password: unilever

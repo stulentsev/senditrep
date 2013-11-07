@@ -1,7 +1,8 @@
 	class MainController < ApplicationController
 	
 	def index
-		@delivery_ids = Delivery.all.map{|d| d.id}
+		@deliveries = Delivery.all
+		@delivery_ids = @deliveries.map{|d| d.id}
 		respond_to do |format|
 			format.html
 			format.js
