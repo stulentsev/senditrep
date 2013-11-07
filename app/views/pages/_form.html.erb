@@ -1,11 +1,4 @@
-<script type=”text/javascript”>
-bkLib.onDomLoaded(function() { nicEditors.allTextAreas() });
-</script>
-
 <div class = 'window window-vpadding'>
-<script type="text/javascript">
-       bkLib.onDomLoaded(function() { nicEditors.allTextAreas() });
-</script>
 <%= form_for(@page) do |f| %>
   <% if @page.errors.any? %>
     <div id="error_explanation">
@@ -36,3 +29,6 @@ bkLib.onDomLoaded(function() { nicEditors.allTextAreas() });
   </div>
 <% end %>
 </div>
+<script type="text/javascript">
+  bkLib.onDomLoaded(function() { nicEditors.allTextAreas() });
+</script>

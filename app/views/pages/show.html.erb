@@ -1,5 +1,5 @@
-
+<% content_for(:title){ @page.title }%>
 <div class = 'window page-content'/>
-  <div class = 'pagetitle'><%= @page.title %></div>
+  <h2 class = 'pagetitle'><%= @page.title %></h2>
   <div class = 'pagecontent'><%= @page.content.html_safe %></div>
 </div>

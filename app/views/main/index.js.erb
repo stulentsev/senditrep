@@ -17,6 +17,8 @@ if (message!='')
 	}
 else
 	{
-		
+		//hide all warning notifications
+		$('#notification').css("display","none");
+		//render result table
 		<%=render :partial =>"table.js.erb"%>	
 	}

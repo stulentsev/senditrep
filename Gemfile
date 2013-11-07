@@ -19,7 +19,6 @@ end
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 
-gem 'pg'
 gem "mysql2"
 
 
@@ -29,5 +28,6 @@ gem 'capistrano', '~> 2.15'
 
 group :development, :test do
   gem 'rspec-rails', '~> 2.0'
+  gem 'pg'
   gem 'factory_girl_rails'
 end

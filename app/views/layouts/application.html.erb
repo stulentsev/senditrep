@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>SendIt - агрегатор курьерской доставки</title>
+  <title>SendIt - <%= content_for?(:title)? yield(:title) : "Агрегатор курьерской доставки"%></title>
+  <meta name = "description" content = "Агрегатор курьерской доставки. Мы помогаем подпирать подходящую вам по цене и скорости доставки курьерскую службу" /> 
+  <meta name = "keywords"  content = "Доставка, курьерские службы, EMS, CDEK, Pony express, UPS" />
   <%= favicon_link_tag %>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
-  <%= javascript_include_tag 'nicEdit' %>
   <%= csrf_meta_tags %>
 </head>
 <body>
@@ -14,5 +15,6 @@
 		<%= yield %>
     <%= render 'layouts/footer'%>
 	</div>
+
 </body>
 </html>
