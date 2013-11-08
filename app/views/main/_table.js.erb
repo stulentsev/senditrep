@@ -1,50 +1,55 @@
 //display "nothing found" in "place"
-var show_nothing_found = function(place){
+var render_nothing_found = function( place ){
 	var nothing = "<%= j render(:partial => 'main/nothing')%>";
-	$(place).html(nothing);
-}
+	place.html(nothing);
+};
+
+var render_result_headers = function( place ){
+	var content = "<%= j render(:partial => 'main/result')%>";
+	place.html(content);
+};
+
+var ajax_table_callback = function( content ) {
+	if (content.code){
+		addRow(content,$("#resultTable tbody"));
+	}
+	console.log(content);
+	number_of_callbacks_done+=1;
+	//check if last deliveries to stop load animation
+	//and check if found something
+	if (number_of_callbacks_done==number_of_deliveries){
+		$('#load').hide();
+		if ($("#resultTable tr").length<2){
+		 	render_nothing_found($('#result_placeholder'));
+		}
+	}
+};
 
 //main function, that form a result table
 $(function(){
 	//remove all previous ajax requests
+	//and initialize or zerofy xhr_pool
 	if (typeof xhr_pool != 'undefined'){
 		xhr_pool.forEach(function(xhr){
 			xhr.abort();
 		});
 	}
-	//initialize or zerofy xhr_pool
 	xhr_pool = [];
-	//add the table headers
-	var content = "<%= j render(:partial => 'main/result')%>";
-	$('#result_placeholder').html(content);
+	
+	render_result_headers($('#result_placeholder'));
 	$('#load').show();
-	//transfer params in ajax request
-	var parameters = <%= raw params.to_json %>;
-	//ids of deliveries to track
+	
+	//delivery number in ajax request
+	console.log(parameters);
 	var delivery_ids = <%= raw @delivery_ids.to_json %>;
-	// number of deliveries to understand when to stop
-	var number_of_deliveries = delivery_ids.length;
-	var num = 0;
+	number_of_deliveries = delivery_ids.length; 
+	number_of_callbacks_done = 0;
 
 
 	//add the rows
 	for (index in delivery_ids){
 		parameters["delivery_id"]=delivery_ids[index];
-		var xhr = $.post( "main/quote.json",parameters, function( content ) {
-		 	if (content.code)
-		 	{
-		 		addRow(content,$("#resultTable tbody"));
-		 	}
-		 	num+=1;
-		 	//check if last deliveries to stop load animation
-		 	//and check if found something
-		 	if (num==number_of_deliveries){
-		 		$('#load').hide();
-		 		if ($("#resultTable tr").length<2){
-		 			show_nothing_found('#result_placeholder');
-		 		}
-		 	}
-		});
+		var xhr = $.post( "main/quote.json",parameters, ajax_table_callback);
 		xhr_pool.push(xhr);
 	}
 });

@@ -9,25 +9,27 @@
 		end
     end
 
-    def quote
+    def validate_parameters()
     	params_validation()
+    	render json: params.to_json
+    end
 
+    def quote
     	quote = collect_quote(params,params[:delivery_id])
     	if quote.nil? || quote.price.nil?
-    		render json:{
-    			:code => false
-    		}
+    		result = {:code => false}
     	else
-	    	render json: { 
+    		result = { 
 	    		:code => true,
 	    		:company_name => quote.company_name,
 	    		:company_link => quote.company_link,
 	    		:type_name => quote.type_name, 
 	    		:price => quote.price,
 	    		:image_url => quote.image_url,
-	    		:days => quote.time
-	    	} 
+	    		:days => quote.days
+	    	}	    	  
 	    end
+	    render json:result
     end
 
     private
@@ -35,8 +37,7 @@
 			delivery = Delivery.find(delivery_id)
 			begin
 				parser_entity = DeliveryParser.new(delivery.name.constantize)
-				parser_result = parser_entity.quotes(params,
-										[delivery.extra2,delivery.extra3])
+				parser_result = parser_entity.quotes(params,[delivery.extra2,delivery.extra3])
 				parser_result.type_name = delivery.extra1
 				parser_result.company_link = delivery.website
 				parser_result.image_url = delivery.image_url

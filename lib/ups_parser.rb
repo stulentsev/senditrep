@@ -4,7 +4,7 @@ class UpsParser
 	def self.quotes(params,extra)
 		quote = Quote.new()
 		quote.company_name = 'UPS'
-		quote.price, quote.time = UpsParser.definePriceAndTime(params,extra)
+		quote.price, quote.days= UpsParser.definePriceAndTime(params,extra)
 		quote
 	end
 

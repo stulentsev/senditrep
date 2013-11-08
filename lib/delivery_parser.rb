@@ -9,6 +9,6 @@ class DeliveryParser
 end
 
 class Quote
-	attr_accessor :price, :time, :company_name, :type_name, :company_link,:image_url
+	attr_accessor :price, :days, :company_name, :type_name, :company_link,:image_url
 end
 

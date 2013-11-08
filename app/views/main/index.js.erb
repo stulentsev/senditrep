@@ -10,6 +10,11 @@ else
 	{
 		//hide all warning notifications
 		$('#notification').css("display","none");
-		//render result table
-		<%=render :partial =>"table.js.erb"%>	
+
+		//validate parameters and render result table
+		$.post("main/validate.json",parameters, function(content){
+			parameters = content;
+			<%=render "table.js.erb"%>
+		});
+		
 	}

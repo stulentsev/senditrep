@@ -7,6 +7,7 @@ Send::Application.routes.draw do
   get 'main/result', to: "main#result"
   get 'main/quote', to: "main#quote"
   post 'main/quote', to: "main#quote"
+  post 'main/validate', to:"main#validate_parameters"
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
