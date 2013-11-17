@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131101140643) do
+ActiveRecord::Schema.define(version: 20131111164056) do
 
   create_table "cdek_locations", force: true do |t|
     t.integer  "num"
@@ -60,6 +60,20 @@ ActiveRecord::Schema.define(version: 20131101140643) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "linkname"
+  end
+
+  create_table "spsr_locations", force: true do |t|
+    t.integer  "city_id"
+    t.integer  "city_number"
+    t.integer  "city_owner_number"
+    t.string   "city_name"
+    t.string   "region_name"
+    t.integer  "region_number"
+    t.integer  "region_owner_number"
+    t.integer  "country_number"
+    t.integer  "country_owner_number"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end

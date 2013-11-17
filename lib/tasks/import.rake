@@ -70,4 +70,23 @@ namespace :import do
     end
     f.write "];"
   end
+
+  desc "Import SPSR locations"
+  task :import_spsr => :environment do
+    City.first(5).each do |city|
+      data = request_spsr_data_about_city(city.city_name)
+      puts data
+    end
+    data = request_spsr_data_about_city("благовещенск")
+    puts data
+
+  end
+
+  def request_spsr_data_about_city(city_name)
+    request_hash = {"GetCityName"=>"","CityName"=>city_name}
+    path = SpsrParser.get_path_from_hash('/cgi-bin/postxml.pl', request_hash) 
+    result_xml = Net::HTTP.get('cpcr.ru', path)
+    result_hash = Hash.from_xml(result_xml)
+    puts result_hash 
+  end
 end

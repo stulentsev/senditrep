@@ -11,6 +11,7 @@
 
     def validate_parameters()
     	params_validation()
+    	params_completing()
     	render json: params.to_json
     end
 
@@ -27,7 +28,7 @@
 	    		:price => quote.price,
 	    		:image_url => quote.image_url,
 	    		:days => quote.days
-	    	}	    	  
+	    	}	    
 	    end
 	    render json:result
     end
@@ -50,13 +51,26 @@
 		end
 
 		def params_validation()
-			params[:city_from], params[:region_from], 
-					params[:index_from] = City.parse_address(params[:from])
-			params[:city_to], params[:region_to], 
-					params[:index_to] = City.parse_address(params[:to])
 	    	params[:weight] = params[:weight].gsub(",",".").to_f
 	    	params[:height] = params[:height].gsub(",",".").to_f
 	    	params[:width] = params[:width].gsub(",",".").to_f
 	    	params[:length] = params[:length].gsub(",",".").to_f
 	    end
+
+	    def params_completing()
+	    	params[:city_from], params[:region_from], 
+					params[:index_from] = City.parse_address(params[:from])
+			params[:city_to], params[:region_to], 
+					params[:index_to] = City.parse_address(params[:to])
+			if !params[:isdocument].nil?
+				params[:weight] = 0.5
+			else
+				volume_weight = weight_by_size()
+				params[:weight] = volume_weight if (volume_weight > params[:weight])
+			end
+		end
+
+		def weight_by_size()
+			params[:weight]*params[:height]*params[:length]/6000
+		end
 end

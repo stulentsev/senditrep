@@ -2,7 +2,7 @@ class DpdParser
 	def self.quotes(params,extra)
 		quote = Quote.new()
 		quote.company_name = 'DPD'
-		quote.price,quote.days =DpdParser.definePriceAndTime(params,extra)
+		quote.price,quote.days =[200,2]#DpdParser.definePriceAndTime(params,extra)
 		quote
 	end
 

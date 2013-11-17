@@ -8,8 +8,10 @@ FactoryGirl.define do
 	end
 	factory :delivery_params, class:Hash do
 		delivery_id "1"
-		from "москва"
-		to "москва"
+		city_from "москва"
+		city_to "москва"
+		index_from "101000"
+		index_to "101000"
 		weight "3"
 		length ""
 		width ""

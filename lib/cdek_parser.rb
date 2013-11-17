@@ -8,7 +8,7 @@ class CdekParser
 	def self.quotes(params,extra)		
 		quote = Quote.new()
 		quote.company_name = 'СДЭК'
-		quote.price, quote.days =CdekParser.definePriceAndTime(params,extra)
+		quote.price, quote.days =[200,2]#CdekParser.definePriceAndTime(params,extra)
 		quote
 	end
 

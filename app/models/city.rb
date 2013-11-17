@@ -1,5 +1,6 @@
 class City < ActiveRecord::Base
 	has_many :indices, dependent: :destroy
+	has_one :spsr_location
 
 	def self.parse_address(address_line)
 		begin
