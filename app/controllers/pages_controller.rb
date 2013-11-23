@@ -13,7 +13,7 @@ class PagesController < ApplicationController
 
   def show
     @page = Page.find(params[:id])
-    @hello = true
+    @hello = true # TODO: What's this?
     respond_to do |format|
       format.html # show.html.erb
       format.json { render :json => @page }

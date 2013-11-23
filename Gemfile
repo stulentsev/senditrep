@@ -24,7 +24,7 @@ gem "mysql2"
 
 gem 'figaro'
 
-gem 'capistrano', '~> 2.15'
+gem 'capistrano', '~> 2.15' # TODO: I hear Capistrano 3 is nice. haven't tried it yet. Shall we?
 
 group :development, :test do
   gem 'rspec-rails', '~> 2.0'

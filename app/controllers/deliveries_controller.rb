@@ -1,5 +1,9 @@
 class DeliveriesController < ApplicationController
+  # TODO:  Proper authentication system should be implemented
   http_basic_authenticate_with name: ENV["EDIT_NAME"], password: ENV["EDIT_PASSWORD"]
+  
+  # TODO: The below code looks pretty standard. Can be replaced with inherited_resources
+
   # GET /deliveries
   # GET /deliveries.json
   def index
@@ -60,6 +64,7 @@ class DeliveriesController < ApplicationController
 
     respond_to do |format|
       if @delivery.update_attributes(delivery_params)
+        # TODO: All literal strings should be extracted to locale files.
         format.html { redirect_to @delivery, :notice => 'Delivery was successfully updated.' }
         format.json { head :no_content }
       else

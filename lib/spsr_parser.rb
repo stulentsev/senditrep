@@ -3,9 +3,9 @@ class SpsrParser
 	#include HTTParty
 	#format :json
 	require "net/http"
-	require 'active_support'
+	require 'active_support' # These should be already required, no?
 	#return data as instance of Quote class
-	def self.quotes params,extra 		
+	def self.quotes(params, extra) 		
 		quote = Quote.new()
 		quote.company_name = 'SPSR'
 		quote.price, quote.days =SpsrParser.define_price_and_time(params)
@@ -31,21 +31,21 @@ class SpsrParser
 		def self.form_request_hash(params)
 			{
 				"TariffCompute_2" => "",
-				"Country" => "209|0",
-				"ToRegion" => "40|0",
-				"ToCity" => "992|0",
-				"FromCountry" => "209|0",
-				"FromRegion" => "35|0",
-				"FromCity" => "893|0",
-				"Weight" => "1",
-				"ToCityName" => "Москва",
-				"Nature" => "1",
-				"FromCityName"=>"Санкт-Петербург",
-				"Amount" => "0",
-				"SMS" => "0",
-				"BeforeSignal" => "0",
-				"PlatType" => "3",
-				"DuesOrder" => "0"
+				"Country"         => "209|0",
+				"ToRegion"        => "40|0",
+				"ToCity"          => "992|0",
+				"FromCountry"     => "209|0",
+				"FromRegion"      => "35|0",
+				"FromCity"        => "893|0",
+				"Weight"          => "1",
+				"ToCityName"      => "Москва",
+				"Nature"          => "1",
+				"FromCityName"    => "Санкт-Петербург",
+				"Amount"          => "0",
+				"SMS"             => "0",
+				"BeforeSignal"    => "0",
+				"PlatType"        => "3",
+				"DuesOrder"       => "0"
 			}
 		end
 

@@ -2,10 +2,9 @@ namespace :import do
 
   desc "Import EMS locations' data to db."
   task :ems => :environment do
-
     flocation = File.open('./lib/tasks/emslocation.json')
     location = flocation.read
-    locs = eval(location)
+    locs = eval(location) # TODO: Use JSON.parse instead of eval
     locs.each do |loc|
       puts loc['name'] + ' '+ loc['value'] + ' ' + loc['type']
       p = Emslocation.create!({
@@ -20,6 +19,7 @@ namespace :import do
   desc "Import CDEK locations' ID from csv to db"
   task :cdek => :environment do
     result = 0
+    # TODO: Use CSV from stdlib
     File.open('./lib/tasks/city_cdek.csv').each_line do |line|
         city = line.gsub("\n","").split(',')
         puts city[1]

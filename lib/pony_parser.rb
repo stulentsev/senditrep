@@ -1,3 +1,5 @@
+# TODO: Remove encoding specification and cyrillic literal strings/comments from all code files.
+# Nothing good can come out of it.
 #encode utf-8
 class PonyParser
 	def self.quotes(params,extra)
